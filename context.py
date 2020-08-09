@@ -11,7 +11,7 @@ class Context(object):
     self.global_sysinfo = 0x8f	#Address containing sysinfo's address
     self.global_flag = 0x8f
     self.global_lookup = 0x7000000	#Address containing global lookup function
-    self.popgm = 'popgm'
+    self.popgm = 'popgm'#hz-
     self.popgm_offset = 0x8f
     self.new_entry_off = 0x8f
     self.write_so = False

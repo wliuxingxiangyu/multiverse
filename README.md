@@ -30,7 +30,10 @@ Rewritten binaries *must* be run with the `LD_BIND_NOW` environment variable set
 
 A very simple example program is provided (`simplest.c`), which is automatically compiled when building Multiverse's global mapping code.  This can be used to test that Multiverse is installed correctly.  For example, to rewrite only the main executable for `simplest64`, the 64-bit version of `simplest`, type `./multiverse.py --execonly --arch x86-64 simplest64` and then run it with `LD_BIND_NOW=1 ./simplest64-r`.
 
-`rewrite.py` is a utility script to rewrite a binary and its libraries, so that `multiverse.py` does not have to be run manually for each library, and it automatically creates a directory for the rewritten libraries, plus a shell script to run the rewritten binary.  For simplicity when rewriting binaries, we recommend using this script.  For example, to rewrite `simplest64`, type `./rewrite.py -64 simplest64`, and the script will rewrite the main binary and all its required libraries (as long as they are not dynamically loaded via a mechanism such as `dlopen`; since statically determining dynamically loaded libraries is difficult, they must be manually extracted and their paths be placed in `<filename>-dynamic-libs.txt`, and then `rewrite.py` will rewrite them).  This may take several minutes.  When it is complete, run the rewritten binary with `bash simplest64-r.sh`.
+`rewrite.py` is a utility script to rewrite a binary and its libraries, so that `multiverse.py` does not have to be run manually for each library, and it automatically creates a directory for the rewritten libraries, plus a shell script to run the rewritten binary.  For simplicity when rewriting binaries, we recommend using this script.  For example, to rewrite `simplest64`, type `./rewrite.py -64 simplest64`, 
+and the script will rewrite the main binary and all its required libraries 
+(as long as they are not dynamically loaded via a mechanism such as `dlopen`; since statically determining dynamically loaded libraries is difficult, they must be manually extracted and their paths be placed in `<filename>-dynamic-libs.txt`, and then `rewrite.py` will rewrite them).  
+This may take several minutes.  When it is complete, run the rewritten binary with `bash simplest64-r.sh`.
 
 ## Instrumentation
 

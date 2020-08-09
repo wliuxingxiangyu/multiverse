@@ -104,7 +104,7 @@ class Rewriter(object):
     '''
     #create a temporary mapper to get where the globals would be inserted
     self.context.alloc_globals = 0
-    mapper = BruteForceMapper(arch,b'',0,0,self.context)
+    mapper = BruteForceMapper(arch,b'',0,0,self.context)#hz-
     retval = self.context.global_lookup + len(mapper.runtime.get_global_mapping_bytes())
     #Now actually set the size of allocated space
     self.context.alloc_globals = size
@@ -187,7 +187,7 @@ class Rewriter(object):
           print "Base address: %s"%hex(seg.header['p_vaddr'])
           bytes = seg.data()
           base = seg.header['p_vaddr']
-          mapper = BruteForceMapper(arch,bytes,base,entry,self.context)
+          mapper = BruteForceMapper(arch,bytes,base,entry,self.context)#hz-
           mapping = mapper.gen_mapping()
           newbytes = mapper.gen_newcode(mapping)
           #Perhaps I could find a better location to set the value of global_flag
@@ -269,7 +269,8 @@ class Rewriter(object):
           if not self.context.write_so:
             self.context.stat['auxvecsize'] = len(mapper.runtime.get_auxvec_code(mapping[entry]))
             popgm = 'x86_popgm' if arch == 'x86' else 'x64_popgm' # TODO: if other architectures are added, this will need to be changed
-            with open(popgm) as f:
+            with open(os.path.dirname(os.path.realpath(sys.argv[0])) + os.sep + popgm) as f:
+            # with open(popgm) as f:
               tmp=f.read()
               self.context.stat['popgmsize'] = len(tmp)
             self.context.stat['globmapsectionsize'] = len(mapper.runtime.get_global_mapping_bytes())

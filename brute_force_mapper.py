@@ -29,7 +29,7 @@ class BruteForceMapper(Mapper):
       from x64_translator import X64Translator
       from x64_runtime import X64Runtime
       self.translator = X64Translator(context.before_inst_callback,self.context)
-      self.runtime = X64Runtime(self.context)
+      self.runtime = X64Runtime(self.context)#hz-
       global assembler
       import x64_assembler as assembler
     else:

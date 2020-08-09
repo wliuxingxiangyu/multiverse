@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
 from x64_assembler import _asm,asm
+import os
+import sys
 
 class X64Runtime(object):
   def __init__(self,context):
@@ -410,7 +413,8 @@ class X64Runtime(object):
     ret
     '''
     popgmbytes = asm(call_popgm%(self.context.global_sysinfo+8))
-    with open('x64_%s' % self.context.popgm) as f:
+    # with open('x64_%s' % self.context.popgm) as f:
+    with open(os.path.dirname(os.path.realpath(sys.argv[0])) + os.sep + 'x64_%s' % self.context.popgm) as f:
       popgmbytes+=f.read()
     return popgmbytes
 
